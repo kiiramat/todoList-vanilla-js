@@ -3,6 +3,15 @@ class ToDo {
         this.mainContainer = document.querySelector(selector);
     }
 
+    drawTitle() {
+        const titleContainer = elementUtils.createDivElement("title-container");
+        const title = document.createElement("h1");
+        title.innerHTML = "To-Do List";
+
+        titleContainer.append(title);
+        this.mainContainer.append(titleContainer);
+    }
+
     drawInputBox() {
         const inputContainer = elementUtils.createDivElement("input-container");
         const formElement = document.createElement("form");
@@ -16,6 +25,7 @@ class ToDo {
     }
 
     draw(){
+        this.drawTitle();
         this.drawInputBox();
     }
 }

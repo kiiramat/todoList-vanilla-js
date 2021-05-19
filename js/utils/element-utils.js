@@ -1,8 +1,10 @@
 const elementUtils = {};
 
 elementUtils.createDivElement = (className) => {
-    const inputContainer = document.createElement("div");
-    inputContainer.className = className;
+    const container = document.createElement("div");
+    container.className = className;
+
+    return container;
 }
 
 elementUtils.createInputElement = (className, type, placeholder, name) => {
