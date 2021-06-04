@@ -40,6 +40,7 @@ class ToDo {
         const buttonElement = elementUtils.createButtonElement("submit-button", () => {
             this.userInputCollection.push(this.inputElement.value);
             this.userTaskCreated();
+            this.inputElement.value = "";
         });
 
         submitButtonContainer.append(buttonElement);
@@ -53,6 +54,7 @@ class ToDo {
 
         this.listItemElement.append(this.checkboxInput);
         this.listItemElement.append(this.checkboxLabel);
+
     }   
     
     drawTaskBoard() {
