@@ -17,9 +17,10 @@ elementUtils.createInputElement = (className, type, placeholder, name) => {
     return inputTag;
 }
 
-elementUtils.createButtonElement = (className, func) => {
+elementUtils.createButtonElement = (className, buttonText, func) => {
     const buttonElement = document.createElement("button");
     buttonElement.className = className;
+    buttonElement.innerHTML = buttonText;
     buttonElement.addEventListener("click", func);
 
     return buttonElement;
