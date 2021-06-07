@@ -4,7 +4,7 @@ class ToDo {
         this.userInputCollection = [];
 
         // DOM Elements
-        this.inputElement = null;
+        this.userInputElement = null;
         this.checkboxInput = null;
         this.checkboxLabel = null;
         this.listItemElement = null;
@@ -28,18 +28,23 @@ class ToDo {
 
     drawInputBox() {
         const inputContainer = elementUtils.createDivElement("input-container");
-        this.inputElement = elementUtils.createInputElement("input-field", "text", "new task", "task");
+        this.userInputElement = elementUtils.createInputElement("input-field", "text", "new task", "task");
         
-        inputContainer.append(this.inputElement);
+        inputContainer.append(this.userInputElement);
         this.mainContainer.append(inputContainer);
     }
 
     drawSubmitButton() {
         const submitButtonContainer = elementUtils.createDivElement("submit-button-container");
         const buttonElement = elementUtils.createButtonElement("submit-button", "Add", () => {
-            this.userInputCollection.push(this.inputElement.value);
+            const userInput = this.userInputElement.value;
+            if ( userInput === "") {
+                return;
+            }
+
+            this.userInputCollection.push(userInput);
             this.userTaskCreated();
-            this.inputElement.value = "";
+            this.userInputElement.value = "";
         });
 
         submitButtonContainer.append(buttonElement);
