@@ -1,12 +1,14 @@
 class ToDo {
     constructor(selector) {
         this.mainContainer = document.querySelector(selector);
-        this.userInputCollection = [];
+        // this.userInputCollection = [];
 
         // DOM Elements
         this.userInputElement = null;
+        this.deleteButton = null;
         this.checkboxInput = null;
         this.checkboxLabel = null;
+        this.tasksUnorderedListElement = null;
         this.listItemElement = null;
     }
 
@@ -38,35 +40,47 @@ class ToDo {
         const submitButtonContainer = elementUtils.createDivElement("submit-button-container");
         const buttonElement = elementUtils.createButtonElement("submit-button", "Add", () => {
             const userInput = this.userInputElement.value;
-            if ( userInput === "") {
+            if (userInput === "") {
                 return;
             }
 
-            this.userInputCollection.push(userInput);
-            this.userTaskCreated();
+            // this.userInputCollection.push(userInput);
+            this.userTask(userInput);
+
             this.userInputElement.value = "";
         });
 
         submitButtonContainer.append(buttonElement);
         this.mainContainer.append(submitButtonContainer);
     }
-
-    userTaskCreated() {
-        const task = this.userInputCollection[this.userInputCollection.length - 1];
-        this.checkboxInput = elementUtils.createCheckboxInput(task, task);
-        this.checkboxLabel = elementUtils.createCheckboxLabel(task, task);
-
-        this.listItemElement.append(this.checkboxInput);
+    
+    userTask(userInput) {
+        this.listItemElement = document.createElement("li");
+        this.deleteTaskButton();
+        this.checkboxInput = elementUtils.createCheckboxInput(userInput, userInput);
+        this.checkboxLabel = elementUtils.createCheckboxLabel(userInput, userInput);
+        
         this.listItemElement.append(this.checkboxLabel);
-    }   
+        this.listItemElement.append(this.checkboxInput); 
+        this.tasksUnorderedListElement.append(this.listItemElement);
+
+    }  
+    
+    deleteTaskButton() {
+        const deleteButton = elementUtils.createButtonElement("delete-button", "x", (event) => {
+            let remove = event.target.parentNode;
+            let parentNode = remove.parentNode;
+            parentNode.removeChild(remove);
+        })
+
+        this.listItemElement.append(deleteButton);
+    }
     
     drawTaskBoard() {
         const tasksBoard = elementUtils.createDivElement("task-board-container");
-        const tasksUnorderedListElement = document.createElement("ul");
-        this.listItemElement = document.createElement("li");
-
-        tasksUnorderedListElement.append(this.listItemElement);
-        tasksBoard.append(tasksUnorderedListElement);
+        this.tasksUnorderedListElement = document.createElement("ul");
+        
+        tasksBoard.append(this.tasksUnorderedListElement);
         this.mainContainer.append(tasksBoard);
     }    
 }
