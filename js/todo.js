@@ -1,7 +1,6 @@
 class ToDo {
     constructor(selector) {
         this.mainContainer = document.querySelector(selector);
-        // this.userInputCollection = [];
 
         // DOM Elements
         this.userInputElement = null;
@@ -37,14 +36,13 @@ class ToDo {
     }
 
     drawSubmitButton() {
-        const submitButtonContainer = elementUtils.createDivElement("submit-button-container");
-        const buttonElement = elementUtils.createButtonElement("submit-button", "Add", () => {
+        const submitButtonContainer = elementUtils.createDivElement("add-button-container");
+        const buttonElement = elementUtils.createButtonElement("add-button", "Add", () => {
             const userInput = this.userInputElement.value;
             if (userInput === "") {
                 return;
             }
 
-            // this.userInputCollection.push(userInput);
             this.userTask(userInput);
 
             this.userInputElement.value = "";
