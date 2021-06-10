@@ -7,15 +7,18 @@ class ToDo {
         this.deleteButton = null;
         this.checkboxInput = null;
         this.checkboxLabel = null;
+        this.tasksBoard = null;
         this.tasksUnorderedListElement = null;
         this.listItemElement = null;
+        this.clearTaskButton = null;
     }
 
     draw(){
         this.drawTitle();
         this.drawInputBox();
-        this.drawSubmitButton();
+        this.drawAddButton();
         this.drawTaskBoard();
+        this.drawClearTaskBoardButton();
     }
 
     drawTitle() {
@@ -35,7 +38,7 @@ class ToDo {
         this.mainContainer.append(inputContainer);
     }
 
-    drawSubmitButton() {
+    drawAddButton() {
         const submitButtonContainer = elementUtils.createDivElement("add-button-container");
         const buttonElement = elementUtils.createButtonElement("add-button", "Add", () => {
             const userInput = this.userInputElement.value;
@@ -43,7 +46,7 @@ class ToDo {
                 return;
             }
 
-            this.userTask(userInput);
+            this.userTaskCreated(userInput);
 
             this.userInputElement.value = "";
         });
@@ -52,7 +55,7 @@ class ToDo {
         this.mainContainer.append(submitButtonContainer);
     }
     
-    userTask(userInput) {
+    userTaskCreated(userInput) {
         this.listItemElement = document.createElement("li");
         this.deleteTaskButton();
         this.checkboxInput = elementUtils.createCheckboxInput(userInput, userInput);
@@ -66,19 +69,25 @@ class ToDo {
     
     deleteTaskButton() {
         const deleteButton = elementUtils.createButtonElement("delete-button", "x", (event) => {
-            let remove = event.target.parentNode;
-            let parentNode = remove.parentNode;
-            parentNode.removeChild(remove);
+            event.target.parentNode.remove();
         })
 
         this.listItemElement.append(deleteButton);
     }
-    
+
     drawTaskBoard() {
-        const tasksBoard = elementUtils.createDivElement("task-board-container");
+        this.tasksBoard = elementUtils.createDivElement("task-board-container");
         this.tasksUnorderedListElement = document.createElement("ul");
         
-        tasksBoard.append(this.tasksUnorderedListElement);
-        this.mainContainer.append(tasksBoard);
-    }    
+        this.tasksBoard.append(this.tasksUnorderedListElement);
+        this.mainContainer.append(this.tasksBoard);
+    }
+
+    drawClearTaskBoardButton() {
+        this.clearTaskButton = elementUtils.createButtonElement("clear-button", "Clear", () => {
+            document.querySelector("ul").innerHTML = "";
+        });
+
+        this.tasksBoard.append(this.clearTaskButton);
+    }
 }
