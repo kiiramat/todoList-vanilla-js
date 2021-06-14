@@ -8,8 +8,9 @@ class ToDo {
         this.checkboxInput = null;
         this.checkboxLabel = null;
         this.tasksBoard = null;
-        this.tasksUnorderedListElement = null;
+        this.tasksList = null;
         this.listItemElement = null;
+        this.clearTaskButtonContainer = null;
         this.clearTaskButton = null;
     }
 
@@ -48,6 +49,7 @@ class ToDo {
 
             this.userTaskCreated(userInput);
 
+            this.clearTaskButtonContainer.classList.remove("hidden");
             this.userInputElement.value = "";
         });
 
@@ -63,13 +65,15 @@ class ToDo {
         
         this.listItemElement.append(this.checkboxLabel);
         this.listItemElement.append(this.checkboxInput); 
-        this.tasksUnorderedListElement.append(this.listItemElement);
-
+        this.tasksList.append(this.listItemElement);
     }  
     
     deleteTaskButton() {
         const deleteButton = elementUtils.createButtonElement("delete-button", "x", (event) => {
             event.target.parentNode.remove();
+            if (this.tasksList.innerHTML === "") {
+                this.clearTaskButtonContainer.classList.add("hidden");
+            }
         })
 
         this.listItemElement.append(deleteButton);
@@ -77,17 +81,19 @@ class ToDo {
 
     drawTaskBoard() {
         this.tasksBoard = elementUtils.createDivElement("task-board-container");
-        this.tasksUnorderedListElement = document.createElement("ul");
+        this.tasksList = document.createElement("ul");
         
-        this.tasksBoard.append(this.tasksUnorderedListElement);
+        this.tasksBoard.append(this.tasksList);
         this.mainContainer.append(this.tasksBoard);
     }
 
     drawClearTaskBoardButton() {
+        this.clearTaskButtonContainer = elementUtils.createDivElement("clear-button-container hidden");
         this.clearTaskButton = elementUtils.createButtonElement("clear-button", "Clear", () => {
             document.querySelector("ul").innerHTML = "";
         });
 
-        this.tasksBoard.append(this.clearTaskButton);
+        this.clearTaskButtonContainer.append(this.clearTaskButton);
+        this.mainContainer.append(this.clearTaskButtonContainer);
     }
 }
