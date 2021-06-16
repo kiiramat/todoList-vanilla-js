@@ -69,14 +69,11 @@ class ToDo {
     userTaskCreated(userInput) {
         this.listItemElement = document.createElement("li");
         this.deleteTaskButton();
-        this.checkboxInput = elementUtils.createCheckboxInput(userInput, userInput);
-        this.checkboxLabel = elementUtils.createCheckboxLabel(userInput, userInput);
+        this.addTaskAndCheckbox(userInput);
         
-        this.listItemElement.append(this.checkboxLabel);
-        this.listItemElement.append(this.checkboxInput); 
         this.tasksList.append(this.listItemElement);
     }  
-    
+
     deleteTaskButton() {
         const deleteButton = elementUtils.createButtonElement("delete-button", "x", (event) => {
             event.target.parentNode.remove();
@@ -86,6 +83,14 @@ class ToDo {
         })
 
         this.listItemElement.append(deleteButton);
+    }
+
+    addTaskAndCheckbox(userInput) {
+        this.checkboxInput = elementUtils.createCheckboxInput(userInput, userInput);
+        this.checkboxLabel = elementUtils.createCheckboxLabel(userInput, userInput);
+        
+        this.listItemElement.append(this.checkboxLabel);
+        this.listItemElement.append(this.checkboxInput); 
     }
 
     drawTaskBoard() {
