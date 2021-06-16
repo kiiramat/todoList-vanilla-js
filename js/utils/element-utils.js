@@ -39,7 +39,7 @@ elementUtils.createCheckboxInput = (id, text, func) => {
 elementUtils.createCheckboxLabel = (identifier, labelInnerHtml) => {
     const checkboxLabel = document.createElement("label");
     checkboxLabel.for = identifier;
-    checkboxLabel.innerHTML = labelInnerHtml;
+    checkboxLabel.innerText = labelInnerHtml;
 
     return checkboxLabel;
 }
