@@ -2,3 +2,7 @@
     display: none;
     width: 0px;
 }
+
+.line-through {
+    text-decoration: line-through;
+}

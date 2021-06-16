@@ -86,11 +86,21 @@ class ToDo {
     }
 
     addTaskAndCheckbox(userInput) {
-        this.checkboxInput = elementUtils.createCheckboxInput(userInput, userInput);
+        this.checkboxInput = elementUtils.createCheckboxInput(userInput, userInput, () => {
+            this.addOrRemoveLineThroughCheckboxLabel();
+        });
         this.checkboxLabel = elementUtils.createCheckboxLabel(userInput, userInput);
         
         this.listItemElement.append(this.checkboxLabel);
         this.listItemElement.append(this.checkboxInput); 
+    }
+
+    addOrRemoveLineThroughCheckboxLabel() {
+        if (this.checkboxInput.checked) {
+            this.checkboxLabel.classList.add("line-through");
+        } else {
+            this.checkboxLabel.classList.remove("line-through");
+        }
     }
 
     drawTaskBoard() {

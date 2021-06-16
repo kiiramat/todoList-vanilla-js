@@ -26,11 +26,12 @@ elementUtils.createButtonElement = (className, buttonText, func) => {
     return buttonElement;
 }
 
-elementUtils.createCheckboxInput = (id, text) => {
+elementUtils.createCheckboxInput = (id, text, func) => {
     const checkboxInput = document.createElement("input");
     checkboxInput.type = "checkbox";
     checkboxInput.id = id;
     checkboxInput.name = text;
+    checkboxInput.addEventListener("click", func);
 
     return checkboxInput;
 }
