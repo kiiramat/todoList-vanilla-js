@@ -116,6 +116,7 @@ class ToDo {
         this.clearTaskButtonContainer = elementUtils.createDivElement("clear-button-container hidden");
         this.clearTaskButton = elementUtils.createButtonElement("clear-button", "Clear", () => {
             document.querySelector("ul").innerHTML = "";
+            this.clearTaskButtonContainer.classList.add("hidden");
         });
 
         this.clearTaskButtonContainer.append(this.clearTaskButton);
