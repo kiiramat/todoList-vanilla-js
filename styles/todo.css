@@ -1,3 +1,27 @@
+body {
+    background-color: #cc6300;
+    font-family: 'Baloo Tammudu 2', cursive;
+}
+
+.title {
+    color: white;
+    text-align: center;
+}
+
+.input-container {
+    display: inline-block;
+}
+
+.add-button-container {
+    display: inline-block;
+}
+
+.task-board-container,
+.clear-button-container {
+    display: flex;
+    justify-content: center;    
+}
+
 .hidden {
     display: none;
     width: 0px;
