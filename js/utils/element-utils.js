@@ -26,9 +26,10 @@ elementUtils.createButtonElement = (className, buttonText, func) => {
     return buttonElement;
 }
 
-elementUtils.createCheckboxInput = (id, text, func) => {
+elementUtils.createCheckboxInput = (className, id, text, func) => {
     const checkboxInput = document.createElement("input");
     checkboxInput.type = "checkbox";
+    checkboxInput.className = className;
     checkboxInput.id = id;
     checkboxInput.name = text;
     checkboxInput.addEventListener("click", func);
@@ -36,9 +37,10 @@ elementUtils.createCheckboxInput = (id, text, func) => {
     return checkboxInput;
 }
 
-elementUtils.createCheckboxLabel = (identifier, labelInnerHtml) => {
+elementUtils.createCheckboxLabel = (className, id, labelInnerHtml) => {
     const checkboxLabel = document.createElement("label");
-    checkboxLabel.for = identifier;
+    checkboxLabel.className = className;
+    checkboxLabel.for = id;
     checkboxLabel.innerText = labelInnerHtml;
 
     return checkboxLabel;

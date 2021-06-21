@@ -3,6 +3,7 @@ class ToDo {
         this.mainContainer = document.querySelector(selector);
 
         // DOM Elements
+        this.parentContainerForInputAndAddButton = null;
         this.userInputElement = null;
         this.addButtonElement = null;
         this.deleteButton = null;
@@ -34,8 +35,9 @@ class ToDo {
     }
 
     drawInputBox() {
+        this.parentContainerForInputAndAddButton = elementUtils.createDivElement("container-input-add_button");
         const inputContainer = elementUtils.createDivElement("input-container");
-        this.userInputElement = elementUtils.createInputElement("input-field", "text", "new task", "task");
+        this.userInputElement = elementUtils.createInputElement("input-field", "text", "New task", "task");
 
         this.userInputElement.addEventListener("keydown", (event) => {
             if (event.code === "Enter" && this.userInputElement.value !== "") {
@@ -44,12 +46,13 @@ class ToDo {
         })
         
         inputContainer.append(this.userInputElement);
-        this.mainContainer.append(inputContainer);
+        this.parentContainerForInputAndAddButton.append(inputContainer);
+        this.mainContainer.append(this.parentContainerForInputAndAddButton);
     }
 
     drawAddButton() {
         const addButtonContainer = elementUtils.createDivElement("add-button-container");
-        this.addButtonElement = elementUtils.createButtonElement("add-button", "Add", () => {
+        this.addButtonElement = elementUtils.createButtonElement("add-button", "ADD", () => {
             const userInput = this.userInputElement.value;
             if (userInput === "") {
                 return;
@@ -58,7 +61,7 @@ class ToDo {
         });
 
         addButtonContainer.append(this.addButtonElement);
-        this.mainContainer.append(addButtonContainer);
+        this.parentContainerForInputAndAddButton.append(addButtonContainer);
     }
 
     addToListAction() {
@@ -69,6 +72,7 @@ class ToDo {
     
     userTaskCreated(userInput) {
         this.listItemElement = document.createElement("li");
+        this.listItemElement.className = "individual-list"
         this.deleteTaskButton();
         this.addTaskAndCheckbox(userInput);
         
@@ -76,7 +80,7 @@ class ToDo {
     }  
 
     deleteTaskButton() {
-        const deleteButton = elementUtils.createButtonElement("delete-button", "x", (event) => {
+        const deleteButton = elementUtils.createButtonElement("task-delete-button", "x", (event) => {
             event.target.parentNode.remove();
             if (this.tasksList.innerHTML === "") {
                 this.clearTaskButtonContainer.classList.add("hidden");
@@ -87,13 +91,15 @@ class ToDo {
     }
 
     addTaskAndCheckbox(userInput) {
-        this.checkboxInput = elementUtils.createCheckboxInput(userInput, userInput, () => {
+        const checkbox = elementUtils.createDivElement("checkbox");
+        this.checkboxInput = elementUtils.createCheckboxInput("task-checkbox",userInput, userInput, () => {
             this.addOrRemoveLineThroughCheckboxLabel();
         });
-        this.checkboxLabel = elementUtils.createCheckboxLabel(userInput, userInput);
+        this.checkboxLabel = elementUtils.createCheckboxLabel("task-label", userInput, userInput);
         
-        this.listItemElement.append(this.checkboxLabel);
-        this.listItemElement.append(this.checkboxInput); 
+        checkbox.append(this.checkboxInput);
+        checkbox.append(this.checkboxLabel);
+        this.listItemElement.append(checkbox); 
     }
 
     addOrRemoveLineThroughCheckboxLabel() {
@@ -107,6 +113,7 @@ class ToDo {
     drawTaskBoard() {
         this.tasksBoard = elementUtils.createDivElement("task-board-container");
         this.tasksList = document.createElement("ul");
+        this.tasksList.className = "tasks-list";
         
         this.tasksBoard.append(this.tasksList);
         this.mainContainer.append(this.tasksBoard);

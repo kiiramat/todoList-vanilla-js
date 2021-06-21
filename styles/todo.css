@@ -1,25 +1,127 @@
-body {
-    background-color: #cc6300;
+html {
+    height: 100%;
+    background-image: linear-gradient(#ff6161,#ff768c);
+    background-repeat: no-repeat;
+    background-size: auto;
     font-family: 'Baloo Tammudu 2', cursive;
+}
+
+input {
+    padding: 0;
+    margin: 0;
+    outline: 0;
+    border: none;
+    /* -webkit-appearance: none; */
+}
+
+.title-container {
+    margin-bottom: -20px;
 }
 
 .title {
     color: white;
     text-align: center;
+    font-size: 40px;
 }
 
-.input-container {
-    display: inline-block;
-}
-
-.add-button-container {
-    display: inline-block;
-}
-
+.container-input-add_button,
 .task-board-container,
 .clear-button-container {
     display: flex;
     justify-content: center;    
+}
+
+.input-field {
+    height: 40px;
+    width: 350px;
+    outline: 0;
+    border: none;
+    padding-left: 15px;
+    border: 1px solid transparent;
+}
+
+.input-field:hover {
+    border: 1px solid #3f9eda;
+}
+
+.input-field::placeholder {
+    font-size: 20px;
+}
+
+input[type="text"] {
+    font-size: 20px;
+}
+
+.add-button { 
+    font-size: 20px;
+    background-color: white;
+    color: #3f9eda;
+    font-weight: 500;
+    height: 42px;
+    width: 60px;
+    outline: 0;
+    border: none;
+    transition-duration: 0.4s;
+}
+
+.add-button:hover {
+    background-color: #3f9eda;
+    color: white;
+}
+
+.tasks-list {
+    list-style:none;
+    background-color: white;
+    width: 388px;
+}
+
+.individual-list {
+    display: flex;
+    margin-top: 25px;
+    margin-right: 40px;
+    margin-bottom: 25px;
+    border-bottom: 1px solid #53BDFF;
+}
+
+.task-delete-button {
+    width: 30px;
+    height: 30px;
+    padding-bottom: 20px;
+    margin-right: 10px;
+    border-radius: 4px;
+    background-color: #ff6161;
+    color: white;
+    font-size: 20px;
+    outline: 0;
+    border: none;
+}
+
+.checkbox {
+    display: inline-flex;
+    position: relative;
+}
+
+.checkbox > input {
+    height: 30px;
+    width: 30px;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    -o-appearance: none;
+    appearance: none;
+    margin-right: 20px;
+    border-radius: 4px;
+    border: 1px solid #b8babd;
+    outline: none;
+    transition-duration: 0.3s;
+    cursor: pointer;
+}
+
+.checkbox > input:checked {
+    background-color: #53BDFF;
+}
+
+.task-label {
+    font-size: 20px;
 }
 
 .hidden {
@@ -29,4 +131,6 @@ body {
 
 .line-through {
     text-decoration: line-through;
+    text-decoration-thickness: 3px;
+    text-decoration-color: #53BDFF;
 }
