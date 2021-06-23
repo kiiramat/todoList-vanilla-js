@@ -134,3 +134,22 @@ input[type="text"] {
     text-decoration-thickness: 3px;
     text-decoration-color: #53BDFF;
 }
+
+.clear-button {
+    font-size: 20px;
+    background-color: white;
+    border-radius: 2px;
+    border: 1px solid #b8babd;
+    color: #3f9eda;
+    font-weight: 500;
+    height: 42px;
+    width: 140px;
+    margin-left: 290px;
+    outline: 0;
+    transition-duration: 0.4s;
+}
+
+.clear-button:hover {
+    background-color: #3f9eda;
+    color: white;
+}

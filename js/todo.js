@@ -93,7 +93,6 @@ class ToDo {
     addTaskAndCheckbox(userInput) {
         const checkbox = elementUtils.createDivElement("checkbox");
         this.checkboxInput = elementUtils.createCheckboxInput("task-checkbox",userInput, userInput, (event) => {
-            console.log(this.checkboxInput)
             this.addOrRemoveLineThroughCheckboxLabel(event);  
         });
         this.checkboxLabel = elementUtils.createCheckboxLabel("task-label", userInput, userInput);
@@ -123,7 +122,7 @@ class ToDo {
 
     drawClearTaskBoardButton() {
         this.clearTaskButtonContainer = elementUtils.createDivElement("clear-button-container hidden");
-        this.clearTaskButton = elementUtils.createButtonElement("clear-button", "Clear", () => {
+        this.clearTaskButton = elementUtils.createButtonElement("clear-button", "CLEAR ALL", () => {
             document.querySelector("ul").innerHTML = "";
             this.clearTaskButtonContainer.classList.add("hidden");
         });
