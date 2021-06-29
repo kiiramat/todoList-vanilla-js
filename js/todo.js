@@ -12,8 +12,9 @@ class ToDo {
         this.tasksBoard = null;
         this.tasksList = null;
         this.listItemElement = null;
-        this.clearTaskButtonContainer = null;
-        this.clearTaskButton = null;
+        this.clearFinishedTasksButtonContainer = null;
+        this.clearAllTasksButtonContainer = null;
+        this.clearAllTasksButton = null;
     }
 
     draw(){
@@ -21,6 +22,7 @@ class ToDo {
         this.drawInputBox();
         this.drawAddButton();
         this.drawTaskBoard();
+        this.drawClearFinishedTasksButton();
         this.drawClearTaskBoardButton();
     }
 
@@ -66,7 +68,8 @@ class ToDo {
 
     addToListAction() {
             this.userTaskCreated(this.userInputElement.value);
-            this.clearTaskButtonContainer.classList.remove("hidden");
+            this.clearAllTasksButtonContainer.classList.remove("hidden");
+            this.clearFinishedTasksButtonContainer.classList.remove('hidden');
             this.userInputElement.value = "";
     }
     
@@ -83,7 +86,8 @@ class ToDo {
         const deleteButton = elementUtils.createButtonElement("task-delete-button", "x", (event) => {
             event.target.parentNode.remove();
             if (this.tasksList.innerHTML === "") {
-                this.clearTaskButtonContainer.classList.add("hidden");
+                this.clearAllTasksButtonContainer.classList.add("hidden");
+                this.clearFinishedTasksButtonContainer.classList.add('hidden');
             }
         })
 
@@ -120,14 +124,45 @@ class ToDo {
         this.mainContainer.append(this.tasksBoard);
     }
 
+    drawClearFinishedTasksButton() {
+        this.clearFinishedTasksButtonContainer = elementUtils.createDivElement("clear-finished-tasks-button-container hidden");
+        const clearFinishedTasksButton = elementUtils.createButtonElement("clear-finished-tasks-button", "CLEAR DONE", () => {
+            this.removeFinishedTasks();
+            this.removeButtonsWhenTaskBoardEmpty();
+        })
+
+        this.clearFinishedTasksButtonContainer.append(clearFinishedTasksButton);
+        this.mainContainer.append(this.clearFinishedTasksButtonContainer);
+    }
+
+    removeFinishedTasks() {
+        const collectAllLis = document.querySelectorAll(".task-board-container>ul>li");
+        collectAllLis.forEach(li => {
+            const listLabel = li.querySelector('.task-label')
+            if (listLabel.classList.contains("line-through")) {
+                li.remove();
+            }
+        })
+    }
+
+    removeButtonsWhenTaskBoardEmpty() {
+        const taskBoard = document.querySelector("ul");
+        if (taskBoard.innerHTML === "") {
+            this.clearAllTasksButtonContainer.classList.add("hidden");
+            this.clearFinishedTasksButtonContainer.classList.add('hidden');
+        }
+    }
+
     drawClearTaskBoardButton() {
-        this.clearTaskButtonContainer = elementUtils.createDivElement("clear-button-container hidden");
-        this.clearTaskButton = elementUtils.createButtonElement("clear-button", "CLEAR ALL", () => {
-            document.querySelector("ul").innerHTML = "";
-            this.clearTaskButtonContainer.classList.add("hidden");
+        this.clearAllTasksButtonContainer = elementUtils.createDivElement("clear-button-container hidden");
+        this.clearAllTasksButton = elementUtils.createButtonElement("clear-button", "CLEAR ALL", () => {
+            const taskBoard = document.querySelector("ul");
+            taskBoard.innerHTML = "";
+            this.clearFinishedTasksButtonContainer.classList.add('hidden');
+            this.clearAllTasksButtonContainer.classList.add("hidden");
         });
 
-        this.clearTaskButtonContainer.append(this.clearTaskButton);
-        this.mainContainer.append(this.clearTaskButtonContainer);
+        this.clearAllTasksButtonContainer.append(this.clearAllTasksButton);
+        this.mainContainer.append(this.clearAllTasksButtonContainer);
     }
 }
