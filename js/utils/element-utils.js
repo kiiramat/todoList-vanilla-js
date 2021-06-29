@@ -7,6 +7,14 @@ elementUtils.createDivElement = (className) => {
     return container;
 }
 
+elementUtils.createH1Element = (className, text) => {
+    const h1Element = document.createElement("h1");
+    h1Element.className = className;
+    h1Element.innerHTML = text;
+
+    return h1Element;
+}
+
 elementUtils.createInputElement = (className, type, placeholder, name) => {
     const inputTag = document.createElement("input");
     inputTag.className = className;

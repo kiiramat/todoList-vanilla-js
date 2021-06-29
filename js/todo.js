@@ -28,9 +28,7 @@ class ToDo {
 
     drawTitle() {
         const titleContainer = elementUtils.createDivElement("title-container");
-        const title = document.createElement("h1");
-        title.className = "title";
-        title.innerHTML = "To-Do List";
+        const title = elementUtils.createH1Element("title", "To-Do List");
 
         titleContainer.append(title);
         this.mainContainer.append(titleContainer);
