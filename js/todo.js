@@ -41,7 +41,7 @@ class ToDo {
 
         this.userInputElement.addEventListener("keydown", (event) => {
             if (event.code === "Enter" && this.userInputElement.value !== "") {
-                this.addToListAction();
+                this.addToTaskBoardAction();
             }
         })
         
@@ -57,21 +57,21 @@ class ToDo {
             if (userInput === "") {
                 return;
             }
-            this.addToListAction();
+            this.addToTaskBoardAction();
         });
 
         addButtonContainer.append(this.addButtonElement);
         this.parentContainerForInputAndAddButton.append(addButtonContainer);
     }
 
-    addToListAction() {
-            this.userTaskCreated(this.userInputElement.value);
+    addToTaskBoardAction() {
+            this.createUserTask(this.userInputElement.value);
+            this.userInputElement.value = "";
             this.clearAllTasksButtonContainer.classList.remove("hidden");
             this.clearFinishedTasksButtonContainer.classList.remove('hidden');
-            this.userInputElement.value = "";
     }
     
-    userTaskCreated(userInput) {
+    createUserTask(userInput) {
         this.listItemElement = document.createElement("li");
         this.listItemElement.className = "individual-list"
         this.deleteTaskButton();
