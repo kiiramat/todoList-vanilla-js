@@ -26,6 +26,8 @@ input {
 
 .container-input-add_button,
 .task-board-container,
+.container-clear-buttons,
+.clear-finished-tasks-button-container,
 .clear-button-container {
     display: flex;
     justify-content: center;    
@@ -135,7 +137,13 @@ input[type="text"] {
     text-decoration-color: #53BDFF;
 }
 
-.clear-button {
+.clear-finished-tasks-button-container {
+    margin-left: 112px;
+    margin-right: 10px;
+}
+
+.clear-button,
+.clear-finished-tasks-button {
     font-size: 20px;
     background-color: white;
     border-radius: 2px;
@@ -144,12 +152,16 @@ input[type="text"] {
     font-weight: 500;
     height: 42px;
     width: 140px;
-    margin-left: 290px;
     outline: 0;
     transition-duration: 0.4s;
 }
 
-.clear-button:hover {
+.clear-finished-tasks-button {
+    width: 165px;
+}
+
+.clear-button:hover,
+.clear-finished-tasks-button:hover {
     background-color: #3f9eda;
     color: white;
 }

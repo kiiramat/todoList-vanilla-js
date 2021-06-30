@@ -73,7 +73,7 @@ class ToDo {
     
     createUserTask(userInput) {
         this.listItemElement = document.createElement("li");
-        this.listItemElement.className = "individual-list"
+        this.listItemElement.className = "individual-list";
         this.deleteTaskButton();
         this.addTaskAndCheckbox(userInput);
         
@@ -123,6 +123,7 @@ class ToDo {
     }
 
     drawClearFinishedTasksButton() {
+        this.parentContainerForClearButtons = elementUtils.createDivElement("container-clear-buttons");
         this.clearFinishedTasksButtonContainer = elementUtils.createDivElement("clear-finished-tasks-button-container hidden");
         const clearFinishedTasksButton = elementUtils.createButtonElement("clear-finished-tasks-button", "CLEAR DONE", () => {
             this.removeFinishedTasks();
@@ -130,7 +131,8 @@ class ToDo {
         })
 
         this.clearFinishedTasksButtonContainer.append(clearFinishedTasksButton);
-        this.mainContainer.append(this.clearFinishedTasksButtonContainer);
+        this.parentContainerForClearButtons.append(this.clearFinishedTasksButtonContainer);
+        this.mainContainer.append(this.parentContainerForClearButtons);
     }
 
     removeFinishedTasks() {
@@ -161,6 +163,6 @@ class ToDo {
         });
 
         this.clearAllTasksButtonContainer.append(this.clearAllTasksButton);
-        this.mainContainer.append(this.clearAllTasksButtonContainer);
+        this.parentContainerForClearButtons.append(this.clearAllTasksButtonContainer);
     }
 }
