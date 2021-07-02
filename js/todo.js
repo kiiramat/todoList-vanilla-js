@@ -40,7 +40,7 @@ class ToDo {
         this.userInputElement = elementUtils.createInputElement("input-field", "text", "New task", "task");
 
         this.userInputElement.addEventListener("keydown", (event) => {
-            if (event.code === "Enter" && this.userInputElement.value !== "") {
+            if (event.key === "Enter" && this.userInputElement.value !== "") {
                 this.addToTaskBoardAction();
             }
         })
