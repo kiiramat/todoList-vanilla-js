@@ -96,6 +96,7 @@ input[type="text"] {
     font-size: 20px;
     outline: 0;
     border: none;
+    min-width: 30px;
 }
 
 .checkbox {
@@ -116,6 +117,7 @@ input[type="text"] {
     outline: none;
     transition-duration: 0.3s;
     cursor: pointer;
+    min-width: 30px;
 }
 
 .checkbox > input:checked {
@@ -124,6 +126,8 @@ input[type="text"] {
 
 .task-label {
     font-size: 20px;
+    word-wrap: break-word;
+    max-width: 230px;
 }
 
 .hidden {
