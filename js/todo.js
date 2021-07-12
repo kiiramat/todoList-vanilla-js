@@ -74,13 +74,13 @@ class ToDo {
     createUserTask(userInput) {
         this.listItemElement = document.createElement("li");
         this.listItemElement.className = "individual-list";
-        this.deleteTaskButton();
+        this.addDeleteTaskButton();
         this.addCheckboxAndTask(userInput);
         
         this.tasksList.append(this.listItemElement);
     }  
 
-    deleteTaskButton() {
+    addDeleteTaskButton() {
         const deleteButton = elementUtils.createButtonElement("task-delete-button", "x", (event) => {
             event.target.parentNode.remove();
             if (this.tasksList.innerHTML === "") {
