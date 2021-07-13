@@ -15,6 +15,7 @@ class ToDo {
         this.clearFinishedTasksButtonContainer = null;
         this.clearAllTasksButtonContainer = null;
         this.clearAllTasksButton = null;
+        this.scrollToTopBtn = null;
     }
 
     draw(){
@@ -169,9 +170,10 @@ class ToDo {
 
     drawScrollToTopBtn() {
         const scrollToTopBtnContainer = elementUtils.createDivElement("scroll-to-top-button-container");
-        const scrollToTopBtn = elementUtils.createButtonElement("scroll-to-top-button", "Top");
+        this.scrollToTopBtn = elementUtils.createButtonElement("scroll-to-top-button hidden", "Back to Top");
+        
 
-        scrollToTopBtnContainer.append(scrollToTopBtn);
+        scrollToTopBtnContainer.append(this.scrollToTopBtn);
         this.mainContainer.append(scrollToTopBtnContainer);
     }
 }
