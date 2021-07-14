@@ -177,7 +177,6 @@ class ToDo {
             });
         });
         
-
         scrollToTopBtnContainer.append(this.scrollToTopBtn);
         this.mainContainer.append(scrollToTopBtnContainer);
     }
