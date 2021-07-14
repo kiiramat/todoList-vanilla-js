@@ -170,7 +170,12 @@ class ToDo {
 
     drawScrollToTopBtn() {
         const scrollToTopBtnContainer = elementUtils.createDivElement("scroll-to-top-button-container");
-        this.scrollToTopBtn = elementUtils.createButtonElement("scroll-to-top-button hidden", "Back to Top");
+        this.scrollToTopBtn = elementUtils.createButtonElement("scroll-to-top-button hidden", "BACK TO TOP", () => {
+            window.scrollTo({ 
+                top: 0, 
+                behavior: 'smooth' 
+            });
+        });
         
 
         scrollToTopBtnContainer.append(this.scrollToTopBtn);
