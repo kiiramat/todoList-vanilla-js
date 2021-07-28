@@ -127,7 +127,7 @@ input[type="text"] {
 .task-label {
     font-size: 20px;
     word-wrap: break-word;
-    max-width: 262px;
+    max-width: 312px;
 }
 
 .line-through {
@@ -147,7 +147,7 @@ input[type="text"] {
     text-decoration: none;
     line-height: 26px;
     padding-top: 10px;
-    padding-left: 10px;
+    padding-left: 20px;
     font-size: 24px;
 }
 
