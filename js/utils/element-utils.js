@@ -45,11 +45,21 @@ elementUtils.createCheckboxInput = (className, id, text, func) => {
     return checkboxInput;
 }
 
-elementUtils.createCheckboxLabel = (className, id, labelInnerHtml) => {
+elementUtils.createCheckboxLabel = (className, id, innerText) => {
     const checkboxLabel = document.createElement("label");
     checkboxLabel.className = className;
     checkboxLabel.for = id;
-    checkboxLabel.innerText = labelInnerHtml;
+    checkboxLabel.innerText = innerText;
 
     return checkboxLabel;
+}
+
+elementUtils.createHyperlinkButton = (className, href, text, func) => {
+    const hyperlink = document.createElement("a");
+    hyperlink.className = className;
+    hyperlink.href = href;
+    hyperlink.text = text;
+    hyperlink.addEventListener("click", func);
+
+    return hyperlink;
 }

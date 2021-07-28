@@ -7,6 +7,7 @@ class ToDo {
         this.userInputElement = null;
         this.addButtonElement = null;
         this.deleteButton = null;
+        this.checkbox = null;
         this.checkboxInput = null;
         this.checkboxLabel = null;
         this.tasksBoardContainer = null;
@@ -68,6 +69,7 @@ class ToDo {
 
     addToTaskBoardAction() {
             this.createUserTask(this.userInputElement.value);
+            this.showToggleButtonIfTextTooLong(this.userInputElement.value);
             this.userInputElement.value = "";
             this.clearAllTasksButtonContainer.classList.remove("hidden");
             this.clearFinishedTasksButtonContainer.classList.remove('hidden');
@@ -95,15 +97,15 @@ class ToDo {
     }
 
     addCheckboxAndTask(userInput) {
-        const checkbox = elementUtils.createDivElement("checkbox");
+        this.checkbox = elementUtils.createDivElement("checkbox");
         this.checkboxInput = elementUtils.createCheckboxInput("task-checkbox",userInput, userInput, (event) => {
             this.addOrRemoveLineThroughTask(event);  
         });
-        this.checkboxLabel = elementUtils.createCheckboxLabel("task-label", userInput, userInput);
+        this.checkboxLabel = elementUtils.createCheckboxLabel("task-label", userInput, userInput);  
         
-        checkbox.append(this.checkboxInput);
-        checkbox.append(this.checkboxLabel);
-        this.listItemElement.append(checkbox); 
+        this.checkbox.append(this.checkboxInput);
+        this.checkbox.append(this.checkboxLabel);
+        this.listItemElement.append(this.checkbox); 
     }
 
     addOrRemoveLineThroughTask(event) {
@@ -113,6 +115,23 @@ class ToDo {
         } else {
             task.classList.remove("line-through");
         }
+    }
+
+    showToggleButtonIfTextTooLong(userInput) {
+        if (userInput.length > 30) {
+            const toggleButton = elementUtils.createHyperlinkButton("toggle-button", "#", "+", () => {
+                this.changeToggleButtonText(toggleButton);
+                
+
+            });
+
+            this.checkbox.append(toggleButton);
+            this.checkboxLabel.classList.add("excerpt-hidden");
+        }
+    }
+
+    changeToggleButtonText(button) {
+        button.text = button.text === "+" ? "-" : "+";
     }
 
     drawTaskBoard() {

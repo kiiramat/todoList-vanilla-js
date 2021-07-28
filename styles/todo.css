@@ -127,13 +127,37 @@ input[type="text"] {
 .task-label {
     font-size: 20px;
     word-wrap: break-word;
-    max-width: 340px;
+    max-width: 262px;
 }
 
 .line-through {
     text-decoration: line-through;
     text-decoration-thickness: 3px;
     text-decoration-color: #53BDFF;
+}
+
+.toggle-button {
+    appearance: none;
+    background: white;
+    color: blue;
+    display: inline-flex;
+    align-items: center;
+    height: 26px;
+    text-decoration: none;
+    line-height: 26px;
+    padding-top: 10px;
+    padding-left: 10px;
+    font-size: 14px;
+}
+
+.excerpt-hidden {
+    height: 25px;
+    overflow: hidden;
+}
+
+.excerpt-visible {
+    height: auto;
+    overflow: auto;
 }
 
 .clear-finished-tasks-button-container {
