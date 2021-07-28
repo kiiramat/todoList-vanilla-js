@@ -118,7 +118,7 @@ class ToDo {
     }
 
     showToggleButtonIfTextTooLong(userInput) {
-        if (userInput.length > 35) {
+        if (userInput.length > 32) {
             const toggleButton = elementUtils.createHyperlinkButton("toggle-button", "#", "+", () => {
                 this.changeToggleButtonText(toggleButton);
             });
