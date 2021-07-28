@@ -139,7 +139,8 @@ input[type="text"] {
 .toggle-button {
     appearance: none;
     background: white;
-    color: blue;
+    color: #3f9eda;
+    font-weight: 600;
     display: inline-flex;
     align-items: center;
     height: 26px;
@@ -147,7 +148,7 @@ input[type="text"] {
     line-height: 26px;
     padding-top: 10px;
     padding-left: 10px;
-    font-size: 14px;
+    font-size: 24px;
 }
 
 .excerpt-hidden {
