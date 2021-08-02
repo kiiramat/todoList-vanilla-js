@@ -69,7 +69,7 @@ class ToDo {
 
     addToTaskBoardAction() {
             this.createUserTask(this.userInputElement.value);
-            this.showToggleButtonIfTextTooLong(this.userInputElement.value);
+            this.showToggleButtonIfTextTooLong(this.checkboxLabel);
             this.userInputElement.value = "";
             this.clearAllTasksButtonContainer.classList.remove("hidden");
             this.clearFinishedTasksButtonContainer.classList.remove('hidden');
@@ -117,8 +117,12 @@ class ToDo {
         }
     }
 
-    showToggleButtonIfTextTooLong(userInput) {
-        if (userInput.length > 32) {
+    showToggleButtonIfTextTooLong(task) {
+        const taskMaxWidth = parseInt(getComputedStyle(task).maxWidth);
+        const taskActualWidth = randomUtils.measureTaskWidth(this.checkboxLabel, this.mainContainer);
+        
+        if (taskMaxWidth > 312) {
+            console.log(1)
             const toggleButton = elementUtils.createHyperlinkButton("toggle-button", "#", "+", () => {
                 this.changeToggleButtonText(toggleButton);
             });

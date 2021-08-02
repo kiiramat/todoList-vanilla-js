@@ -15,6 +15,14 @@ elementUtils.createH1Element = (className, text) => {
     return h1Element;
 }
 
+elementUtils.createParagraphElement = (className, text) => {
+    const h1Element = document.createElement("p");
+    h1Element.className = className;
+    h1Element.innerHTML = text;
+
+    return h1Element;
+}
+
 elementUtils.createInputElement = (className, type, placeholder, name) => {
     const inputTag = document.createElement("input");
     inputTag.className = className;
