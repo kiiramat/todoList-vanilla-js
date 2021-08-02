@@ -222,6 +222,7 @@ input[type="text"] {
     width: 0px;
 }
 
-.provisional-element {
+.provisional-text-element {
     display: inline-block;
+    font-size: 20px;
 }

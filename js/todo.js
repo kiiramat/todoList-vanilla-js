@@ -119,10 +119,9 @@ class ToDo {
 
     showToggleButtonIfTextTooLong(task) {
         const taskMaxWidth = parseInt(getComputedStyle(task).maxWidth);
-        const taskActualWidth = randomUtils.measureTaskWidth(this.checkboxLabel, this.mainContainer);
+        const taskActualWidth = measureTextWidth(this.checkboxLabel, this.mainContainer);
         
-        if (taskMaxWidth > 312) {
-            console.log(1)
+        if (taskActualWidth >= taskMaxWidth) {
             const toggleButton = elementUtils.createHyperlinkButton("toggle-button", "#", "+", () => {
                 this.changeToggleButtonText(toggleButton);
             });
