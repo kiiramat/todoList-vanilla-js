@@ -123,7 +123,7 @@ class ToDo {
         
         if (taskActualWidth >= taskMaxWidth) {
             const toggleButton = elementUtils.createHyperlinkButton("toggle-button", "#", "⌄", () => {
-                this.changeToggleButtonText(toggleButton);
+                this.switchToggleButton(toggleButton);
             });
 
             this.checkbox.append(toggleButton);
@@ -131,8 +131,16 @@ class ToDo {
         }
     }
 
-    changeToggleButtonText(button) {
-        button.innerHTML = button.innerHTML === "⌄" ? "⌃" : "⌄";
+    switchToggleButton(button) {
+        if (button.innerHTML === "⌄") {
+            button.innerHTML = "⌃";
+            this.checkboxLabel.classList.remove("excerpt-hidden");
+            this.checkboxLabel.classList.add("excerpt-visible");
+        } else {
+            button.innerHTML = "⌄";
+            this.checkboxLabel.classList.add("excerpt-hidden");
+            this.checkboxLabel.classList.remove("excerpt-visible");
+        }
     }
 
     drawTaskBoard() {
