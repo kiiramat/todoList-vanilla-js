@@ -122,8 +122,8 @@ class ToDo {
         const taskActualWidth = measureTextWidth(this.checkboxLabel, this.mainContainer, getComputedStyle(task));
         
         if (taskActualWidth >= taskMaxWidth) {
-            const toggleButton = elementUtils.createHyperlinkButton("toggle-button", "#", "⌄", () => {
-                this.switchToggleButton(toggleButton);
+            const toggleButton = elementUtils.createHyperlinkButton("toggle-button", "#", "⌄", (event) => {
+                this.switchToggleButton(toggleButton, event);
             });
 
             this.checkbox.append(toggleButton);
@@ -131,15 +131,16 @@ class ToDo {
         }
     }
 
-    switchToggleButton(button) {
+    switchToggleButton(button, e) {
+        const task = e.target.previousSibling;
         if (button.innerHTML === "⌄") {
             button.innerHTML = "⌃";
-            this.checkboxLabel.classList.remove("excerpt-hidden");
-            this.checkboxLabel.classList.add("excerpt-visible");
+            task.classList.remove("excerpt-hidden");
+            task.classList.add("excerpt-visible");
         } else {
             button.innerHTML = "⌄";
-            this.checkboxLabel.classList.add("excerpt-hidden");
-            this.checkboxLabel.classList.remove("excerpt-visible");
+            task.classList.add("excerpt-hidden");
+            task.classList.remove("excerpt-visible");
         }
     }
 
