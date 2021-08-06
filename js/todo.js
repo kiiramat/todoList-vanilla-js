@@ -98,14 +98,19 @@ class ToDo {
 
     addCheckboxAndTask(userInput) {
         this.checkbox = elementUtils.createDivElement("checkbox");
-        this.checkboxInput = elementUtils.createCheckboxInput("task-checkbox",userInput, userInput, (event) => {
+        this.checkboxInput = elementUtils.createCheckboxInput("task-checkbox", userInput, userInput, (event) => {
             this.addOrRemoveLineThroughTask(event);  
         });
-        this.checkboxLabel = elementUtils.createCheckboxLabel("task-label", userInput, userInput);  
+        this.checkboxLabel = elementUtils.createCheckboxLabel("task-label", userInput, userInput);
+        this.checkboxLabel.innerHTML = this.replaceLinkInsideText(this.checkboxLabel.innerText);
         
         this.checkbox.append(this.checkboxInput);
         this.checkbox.append(this.checkboxLabel);
         this.listItemElement.append(this.checkbox); 
+    }
+
+    replaceLinkInsideText(text) {
+        return anchorme(text);
     }
 
     addOrRemoveLineThroughTask(event) {
