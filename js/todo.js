@@ -102,15 +102,24 @@ class ToDo {
             this.addOrRemoveLineThroughTask(event);  
         });
         this.checkboxLabel = elementUtils.createCheckboxLabel("task-label", userInput, userInput);
-        this.checkboxLabel.innerHTML = this.replaceLinkInsideText(this.checkboxLabel.innerText);
+        this.checkboxLabel.innerHTML = this.highlightLinkInsideText(this.checkboxLabel.innerText);
         
         this.checkbox.append(this.checkboxInput);
         this.checkbox.append(this.checkboxLabel);
         this.listItemElement.append(this.checkbox); 
     }
 
-    replaceLinkInsideText(text) {
-        return anchorme(text);
+    highlightLinkInsideText(input) {
+        const highlightedLink = anchorme({
+            input,
+            options: {
+                attributes: {
+                    target: "_blank",
+                    class: "detected",
+                },
+            }
+        })
+        return highlightedLink;
     }
 
     addOrRemoveLineThroughTask(event) {
