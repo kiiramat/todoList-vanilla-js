@@ -98,15 +98,21 @@ class ToDo {
 
     addCheckboxAndTask(userInput) {
         this.checkbox = elementUtils.createDivElement("checkbox");
-        this.checkboxInput = elementUtils.createCheckboxInput("task-checkbox", userInput, userInput, (event) => {
+        this.checkboxInput = elementUtils.createCheckboxInput("task-checkbox", this.generateUUID(), userInput, (event) => {
             this.addOrRemoveLineThroughTask(event);  
         });
-        this.checkboxLabel = elementUtils.createCheckboxLabel("task-label", userInput, userInput);
+        this.checkboxLabel = elementUtils.createCheckboxLabel("task-label", this.generateUUID(), userInput);
         this.checkboxLabel.innerHTML = this.highlightLinkInsideText(this.checkboxLabel.innerText);
         
         this.checkbox.append(this.checkboxInput);
         this.checkbox.append(this.checkboxLabel);
         this.listItemElement.append(this.checkbox); 
+    }
+
+    generateUUID() {
+        return ([1e7]+-1e3+-4e3+-8e3+-1e11).replace(/[018]/g, c =>
+            (c ^ crypto.getRandomValues(new Uint8Array(1))[0] & 15 >> c / 4).toString(16)
+        );
     }
 
     addOrRemoveLineThroughTask(event) {
