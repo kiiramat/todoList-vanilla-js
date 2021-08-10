@@ -109,6 +109,15 @@ class ToDo {
         this.listItemElement.append(this.checkbox); 
     }
 
+    addOrRemoveLineThroughTask(event) {
+        const task = event.target.nextSibling;
+        if (event.target.checked) {
+            task.classList.add("line-through");
+        } else {
+            task.classList.remove("line-through");
+        }
+    }
+
     highlightLinkInsideText(input) {
         const highlightedLink = anchorme({
             input,
@@ -120,15 +129,6 @@ class ToDo {
             }
         })
         return highlightedLink;
-    }
-
-    addOrRemoveLineThroughTask(event) {
-        const task = event.target.nextSibling;
-        if (event.target.checked) {
-            task.classList.add("line-through");
-        } else {
-            task.classList.remove("line-through");
-        }
     }
 
     showToggleButtonIfTextTooLong(task) {
