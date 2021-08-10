@@ -138,6 +138,7 @@ class ToDo {
         if (taskActualWidth >= taskMaxWidth) {
             const toggleButton = elementUtils.createHyperlinkButton("toggle-button", "#", "⌄", (event) => {
                 this.switchToggleButton(toggleButton, event);
+                event.preventDefault();
             });
 
             this.checkbox.append(toggleButton);
